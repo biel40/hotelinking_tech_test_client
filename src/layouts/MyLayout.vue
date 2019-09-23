@@ -20,17 +20,15 @@
 
       </q-toolbar>
 
-      <div class="q-mt-xs" >
-        <q-chip>
+      <div class="q-mt-xs" v-on:click="displayUserMenu">
+        <q-chip id="userDiv" >
         <q-avatar>
           <img src="https://cdn2.iconfinder.com/data/icons/user-icon-2-1/100/user_5-15-512.png">
         </q-avatar>
-          <!-- Sustituir esto por el nombre del usuario que se loguea. -->
-          Usuario cualquiera
+          {{ this.user.name }} 
         </q-chip>
       </div>
-      
-    
+         
     </q-header>
 
     <q-drawer
@@ -86,7 +84,12 @@ export default {
 
   data () {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      user: {
+        // Cambiar esto por el nombre del usuario que se logea.
+        name:  "Usuario cualquiera"
+      },
+      menuIsDisplayed: false
     }
   },
 
@@ -96,7 +99,23 @@ export default {
     },
     displayMainPromotionalCode: function(event) {
       this.$router.push('');
+    },
+    displayUserMenu: function (event) {
+      if (this.menuIsDisplayed == false) {
+        this.menuIsDisplayed = true;
+        console.log('menuIsDisplayed value = ' + this.menuIsDisplayed);
+      } else {
+        this.menuIsDisplayed = false;
+        console.log('menuIsDisplayed value = ' + this.menuIsDisplayed);
+      }
     }
   }
 }
 </script>
+
+<style>
+  #userDiv:hover {
+    cursor: pointer;
+    background-color: #cfc0e9;
+  }
+</style>
