@@ -8,13 +8,13 @@
       <div class="q-pa-md row items-start q-gutter-md" >
         <q-card class="my-card">
 
-          <q-card-section class="bg-primary text-black">
-            <div class="text-h6"> Oferta Exclusiva Única </div>
+          <q-card-section class="bg-primary text-black" style="height: 150px;">
+            <div class="text-h6"> Código Promocional Único </div>
             <div class="text-subtitle2"> Especial para ti! </div>
           </q-card-section>
 
           <q-card-actions align="around">
-            <q-btn color="primary"> Aceptar </q-btn>
+            <q-btn color="primary"> GENERAR </q-btn>
           </q-card-actions>
 
         </q-card>
