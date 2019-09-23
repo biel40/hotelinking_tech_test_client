@@ -18,7 +18,7 @@
 
       <q-input filled v-model="password" type="password" style="width: 500px" hint="Contraseña del Usuario" :rules="[ val => val && val.length > 0 || 'Campo Obligatorio']">
         <template v-slot:before>
-          <q-icon name="security" />
+          <q-icon name="vpn_key" />
         </template>
       </q-input>
 
