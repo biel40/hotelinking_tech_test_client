@@ -66,7 +66,9 @@ export default {
 </script>
 
 <style>
+
   body {
-    background-color: #e1f5fe;
+    background-color: #eef3f5;
   }
+
 </style>
