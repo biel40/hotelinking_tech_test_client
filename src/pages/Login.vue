@@ -23,7 +23,12 @@
       </q-input>
 
       <div>
-        <q-btn label="Login" text-color="" type="submit" color="primary"  class="q-ml-md q-items-center q-pa-xs" style="width: 150px" />
+        <q-btn label="Login" text-color="white" type="submit" color="primary"  class="q-ml-md q-items-center q-pa-xs" style="width: 200px" />
+      </div>
+
+
+      <div>
+        <q-btn label="Registrate!" v-on:click="redirectSignIn" text-color="black" type="button" color="secondary"  class="q-ml-md q-mt-md q-items-center q-pa-xs" style="width: 200px" />
       </div>
 
     </q-form>
@@ -64,6 +69,9 @@ export default {
     axiosLogin: function() {
       // TODO:
       console.log('Haciendo el login con axios!')
+    },
+    redirectSignIn: function () {
+      this.$router.push('/register');
     }
   }
 }
