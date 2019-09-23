@@ -8,12 +8,12 @@ const routes = [
     path: '/app',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/Index.vue') },
+      { path: '/productCodeList', component: () => import('pages/ProductCodesList.vue') }
     ]
   }
 ]
 
-// Always leave this as last one
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',

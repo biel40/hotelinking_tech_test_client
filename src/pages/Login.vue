@@ -15,7 +15,7 @@
         v-model="username"
         label="Usuario"
         class="q-gutter-md"
-        style="width: 600px"
+        style="width: 550px"
       />
 
       <q-input
@@ -23,7 +23,7 @@
         v-model="password"
         label="Contraseña"
         class="q-gutter-md"
-        style="width: 600px"
+        style="width: 550px"
       />
 
       <div>
@@ -47,29 +47,26 @@ export default {
 
   methods: {
     onSubmit () {
-      if (this.accept !== true) {
-        this.$q.notify({
-          color: 'red-5',
-          textColor: 'white',
-          icon: 'fas fa-exclamation-triangle',
-          message: 'You need to accept the license and terms first'
+      if (this.username == "" || this.password == "") {
+        this.$q.notify ({
+        color: 'red-5',
+        textColor: 'white',
+        icon: 'warning',
+        message: 'Por favor, rellena los dos campos para acceder!'
         })
+      } else {
+        // Método que se dispara al hacer click en el boton de Login:
+        // Si todo el Login fuera correcto, redireccionamos a Index.vue: FUNCIONA!
+        this.$router.push('/app');
       }
-      else {
-        this.$q.notify({
-          color: 'green-4',
-          textColor: 'white',
-          icon: 'fas fa-check-circle',
-          message: 'Submitted'
-        })
-      }
+      
     },
   }
 }
 </script>
 
 <style>
-   body {
-       background-color: #e1f5fe;
-    }
+  body {
+    background-color: #e1f5fe;
+  }
 </style>
