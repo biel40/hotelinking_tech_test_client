@@ -5,11 +5,11 @@ const routes = [
     }
   ,
   {
-    path: '/app',
+    path: '',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: '/productCodeList', component: () => import('pages/ProductCodesList.vue') }
+      { path: '/app/index', component: () => import('pages/Index.vue') },
+      { path: '/app/productCodeList', component: () => import('pages/ProductCodesList.vue') }
     ]
   }
 ]

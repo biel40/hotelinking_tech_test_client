@@ -20,8 +20,8 @@
 
       </q-toolbar>
 
-      <div class="q-mt-xs q-pa-xs" v-on:click="displayUserMenu">
-        <q-chip id="userDiv" class="q-pa-md" >
+      <div class="q-mt-xs q-pa-xs" v-on:click="logoutFunction">
+        <q-chip square id="userDiv" class="q-pa-md" >
         <q-avatar>
           <img src="https://cdn1.iconfinder.com/data/icons/materia-arrows-symbols-vol-8/24/018_320_door_exit_logout-512.png">
         </q-avatar>
@@ -86,7 +86,6 @@ export default {
     return {
       leftDrawerOpen: false,
       user: {
-        // Cambiar esto por el nombre del usuario que se logea.
         logout:  "Desloguearse"
       },
       menuIsDisplayed: false
@@ -95,19 +94,15 @@ export default {
 
   methods: {
     displayPromotionalCodeList: function(event) {
-      this.$router.push('/productCodeList');
+      this.$router.push('/app/productCodeList').catch(err => { console.log('Ya se encuentra en esta página') });
     },
     displayMainPromotionalCode: function(event) {
-      this.$router.push('');
+      this.$router.push('/app/index').catch(err => { console.log('Ya se encuentra en esta página') });
     },
-    displayUserMenu: function (event) {
-      if (this.menuIsDisplayed == false) {
-        this.menuIsDisplayed = true;
-        console.log('menuIsDisplayed value = ' + this.menuIsDisplayed);
-      } else {
-        this.menuIsDisplayed = false;
-        console.log('menuIsDisplayed value = ' + this.menuIsDisplayed);
-      }
+    logoutFunction: function() {
+      console.log('Deslogueamos');
+      // TODO: Caducamos la session (token y eso)  
+      this.$router.push('/')
     }
   }
 }
