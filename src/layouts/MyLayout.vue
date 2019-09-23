@@ -20,12 +20,12 @@
 
       </q-toolbar>
 
-      <div class="q-mt-xs" v-on:click="displayUserMenu">
-        <q-chip id="userDiv" >
+      <div class="q-mt-xs q-pa-xs" v-on:click="displayUserMenu">
+        <q-chip id="userDiv" class="q-pa-md" >
         <q-avatar>
-          <img src="https://cdn2.iconfinder.com/data/icons/user-icon-2-1/100/user_5-15-512.png">
+          <img src="https://cdn1.iconfinder.com/data/icons/materia-arrows-symbols-vol-8/24/018_320_door_exit_logout-512.png">
         </q-avatar>
-          {{ this.user.name }} 
+          {{ this.user.logout }} 
         </q-chip>
       </div>
          
@@ -87,7 +87,7 @@ export default {
       leftDrawerOpen: false,
       user: {
         // Cambiar esto por el nombre del usuario que se logea.
-        name:  "Usuario cualquiera"
+        logout:  "Desloguearse"
       },
       menuIsDisplayed: false
     }
