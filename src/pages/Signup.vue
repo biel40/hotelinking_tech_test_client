@@ -23,7 +23,14 @@
         @submit="onSubmit"
         class="q-gutter-md column items-center"
       >
-        <q-input filled v-model="username" type="email" style="width: 500px" hint="Nombre de Usuario" :rules="[ val => val && val.length > 0 || 'Campo Obligatorio']">
+
+        <q-input filled v-model="name"  style="width: 500px" hint="Nombre de Usuario" :rules="[ val => val && val.length > 0 || 'Campo Obligatorio']">
+          <template v-slot:before>
+            <q-icon name="person_add" />
+          </template>
+        </q-input>
+
+        <q-input filled v-model="email" type="email" style="width: 500px" hint="Email del Usuario" :rules="[ val => val && val.length > 0 || 'Campo Obligatorio']">
           <template v-slot:before>
             <q-icon name="mail" />
           </template>
@@ -57,7 +64,8 @@
 export default {
   data () {
     return {
-      username: "",
+      name: "",
+      email: "",
       password: "",
       passwordConfirmation: "",
     }
@@ -74,19 +82,32 @@ export default {
         message: 'Las contraseñas deben coincidir!'
         })
       } else {
-        // TODO: Cambiar la petición post por la peticion acertada al backend. En este caso, al endpoint para registrar un nuevo usuario.
-        // homestead.test/api/loquesea
-        this.$axios.post('/user', {
-          username: this.username,
+        console.log(this.name);
+        console.log(this.email);
+        console.log(this.password);
+        console.log(this.passwordConfirmation);
+
+        this.$axios.post('http://homestead.test/api/register', {
+          name: this.name,
+          email: this.email,
           password: this.password,
-          // Verifica este campo!!!
-          repeatPassword: this.passwordConfirmation
+          password_confirmation: this.passwordConfirmation
         })
-        .then(function (response) {
-          console.log(response);
+        .then((response) => {
+          this.$q.notify ({
+            color: 'green',
+            textColor: 'white',
+            icon: 'warning',
+            message: 'Usuario introducido correctamente!'
+          })
         })
-        .catch(function (error) {
-          console.log(error);
+        .catch((error) => {
+          this.$q.notify ({
+            color: 'green',
+            textColor: 'white',
+            icon: 'warning',
+            message: 'Usuario introducido correctamente!'
+          })
         });
       }
     },
