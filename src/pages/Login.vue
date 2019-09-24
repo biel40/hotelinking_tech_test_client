@@ -3,7 +3,7 @@
     <div id="mainDiv" class="q-pa-md" style="max-width: 2500px">
 
     <div class="column items-center q-mt-md">
-        <h3> Login </h3>
+        <h2> Login </h2>
     </div>
 
     <q-form
@@ -80,7 +80,7 @@ export default {
 <style>
 
   body {
-    background-color: #f0f5f7;
+    background-color: #e1f5fe;
   }
 
 </style>
