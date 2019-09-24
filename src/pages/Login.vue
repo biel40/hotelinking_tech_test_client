@@ -2,7 +2,7 @@
 
     <div id="mainDiv" class="q-pa-md" style="max-width: 2500px">
 
-    <div class="column items-center">
+    <div class="column items-center q-mt-md">
         <h3> Login </h3>
     </div>
 

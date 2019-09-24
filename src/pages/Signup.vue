@@ -10,7 +10,9 @@
             icon="keyboard_arrow_left"
             v-on:click="backToLogin"
           />
+
           <span class="q-ml-md"> Volver al login </span>
+
       </div>
 
       <div class="column items-center q-ml-md">
@@ -55,7 +57,6 @@
 export default {
   data () {
     return {
-      // FIXME: Faltan atributos
       username: "",
       password: "",
       passwordConfirmation: "",
@@ -73,11 +74,13 @@ export default {
         message: 'Las contraseñas deben coincidir!'
         })
       } else {
-        // TODO: Cambiar la petición post por la peticion acertada al backend
+        // TODO: Cambiar la petición post por la peticion acertada al backend. En este caso, al endpoint para registrar un nuevo usuario.
         // homestead.test/api/loquesea
         this.$axios.post('/user', {
-          firstName: 'Fred',
-          lastName: 'Flintstone'
+          username: this.username,
+          password: this.password,
+          // Verifica este campo!!!
+          repeatPassword: this.passwordConfirmation
         })
         .then(function (response) {
           console.log(response);
