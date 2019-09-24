@@ -15,12 +15,27 @@
           </q-card-section>
 
           <q-card-actions align="around" class="q-pa-md" >
-            <q-btn v-on:click="submitCode" color="primary" text-color="black" > CANJEAR CÓDIGO </q-btn>
+            <q-btn @click="confirm = true" color="primary" text-color="black" > CANJEAR CÓDIGO </q-btn>
           </q-card-actions>
 
         </q-card>
 
       </div> 
+
+       <q-dialog v-model="confirm" class="">
+
+        <q-card>
+          <q-card-section class="row items-center">
+            <span class=""> Esta seguro de que quiere canjear DEFINITIVAMENTE esta oferta? </span>
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn label="Cancelar" color="negative" v-close-popup />
+            <q-btn label="Confirmar" color="primary" v-close-popup v-on:click="submitCode" />
+          </q-card-actions>
+        </q-card>
+
+      </q-dialog>
 
     </div>
     
@@ -33,12 +48,34 @@ export default {
   data () {
     return {
       userPromotionalCodes: [],
+      confirm: false,
     }
   },
 
   methods: {
     submitCode() {
       console.log('Submiting code...');
+      // TODO:
+      this.$axios.post('/user', {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+      })
+      .then( (response) =>  {
+          this.$q.notify ({
+          color: 'green',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'El código ha sido canjeado correctamente!'
+        })
+      })
+      .catch((error) => {
+        this.$q.notify ({
+          color: 'red',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Ha habido un error canjeando el código. Por favor, vuelva a intentarlo más tarde.'
+        })
+      });
     },
     getAllPromotionalCodesFromUser(userId) {
       // Hacemos el GET al backend para que devuelva una lista de objetos PromotionalCode
