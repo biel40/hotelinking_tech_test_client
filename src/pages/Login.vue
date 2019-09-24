@@ -48,9 +48,6 @@ export default {
 
   methods: {
     onSubmit () {
-      //TODO: Llamamos a una función que hará el login con Axios
-      this.axiosLogin();
-
       if (this.username == "" || this.password == "") {
         this.$q.notify ({
         color: 'red-5',
@@ -59,18 +56,27 @@ export default {
         message: 'Por favor, rellena los dos campos para acceder!'
         })
       } 
-      else {
-        // Método que se dispara al hacer click en el boton de Login:
-        // Si todo el Login fuera correcto, redireccionamos a Index.vue: FUNCIONA!
+      else this.axiosLogin();
+    },
+    axiosLogin() {
+      this.$axios.post('http://homestead.test/api/login', {
+        email: this.username,
+        password: this.password
+      })
+      .then((response) => {
+        // Si el login ha ido bien, entras en la página principal
         this.$router.push('/app/index');
-      }
-      
+      })
+      .catch((error) => {
+         this.$q.notify ({
+            color: 'red',
+            textColor: 'white',
+            icon: 'warning',
+            message: 'Ha ocurrido un error. Por favor, inténtelo más tarde.'
+          })
+      });
     },
-    axiosLogin: function() {
-      // TODO:
-      console.log('Haciendo el login con axios!')
-    },
-    redirectSignIn: function () {
+    redirectSignIn() {
       this.$router.push('/register');
     }
   }

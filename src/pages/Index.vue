@@ -20,7 +20,7 @@
 
       </div>
 
-      <q-dialog v-model="confirm" class="">
+      <q-dialog v-model="confirm">
 
         <q-card>
           <q-card-section class="row items-center">

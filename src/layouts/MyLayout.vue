@@ -24,7 +24,7 @@
         <q-chip square id="userDiv" class="q-pa-md" >
         <q-avatar>
           <img src="https://cdn1.iconfinder.com/data/icons/materia-arrows-symbols-vol-8/24/018_320_door_exit_logout-512.png">
-        </q-avatar>
+        </q-avatar v-on:click="">
           <span> Desloguearse </span>
         </q-chip>
       </div>
@@ -73,8 +73,6 @@
       <router-view />
     </q-page-container>
 
-    <!-- Aquí puedes poner el icono igual que había en KeepItSafe a la izquierda -->
-
   </q-layout>
 </template>
 
@@ -100,9 +98,20 @@ export default {
       this.$router.push('/app/index').catch(err => { console.log('Ya se encuentra en esta página') });
     },
     logoutFunction: function() {
-      console.log('Deslogueamos');
-      // TODO: Caducamos la session (token y eso)  
-      this.$router.push('/')
+      this.$axios.post('http://homestead.test/api/logout')
+      .then((response) => {
+        // Si nos deslogueamos, volvemos al menu del login
+        this.$router.push('/');
+      })
+      .catch((error) => {
+         this.$q.notify ({
+            color: 'red',
+            textColor: 'white',
+            icon: 'warning',
+            message: 'Ha ocurrido un error. Por favor, inténtelo más tarde.'
+          })
+      });  
+      
     }
   }
 }
