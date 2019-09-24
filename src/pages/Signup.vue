@@ -16,7 +16,7 @@
       </div>
 
       <div class="column items-center q-ml-md">
-          <h3> Página de Registro </h3>
+          <h3 style="color: #f57f17;" > Formulario de Registro </h3>
       </div>
 
       <q-form
@@ -43,7 +43,7 @@
 
 
         <div>
-          <q-btn label="Confirmar" text-color="black" type="submit" color="primary"  class="q-ml-md q-items-center q-pa-xs q-mt-md" style="width: 200px" />
+          <q-btn label="Registrarse" text-color="black" type="submit" color="primary"  class="q-ml-md q-items-center q-pa-xs q-mt-md" style="width: 200px" />
         </div>
 
       </q-form>

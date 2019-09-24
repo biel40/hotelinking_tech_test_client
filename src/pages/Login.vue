@@ -28,7 +28,7 @@
 
 
       <div>
-        <q-btn label="Registrate!" v-on:click="redirectSignIn" text-color="black" type="button" color="secondary"  class="q-ml-md q-mt-md q-items-center q-pa-xs" style="width: 200px" />
+        <q-btn label="Registrate" v-on:click="redirectSignIn" text-color="black" type="button" color="secondary"  class="q-ml-md q-mt-md q-items-center q-pa-xs" style="width: 120px" />
       </div>
 
     </q-form>

@@ -12,13 +12,28 @@
             <div class="text-h6"> <span style="color: black;"> Código Promocional #12345 </span> </div>
           </q-card-section>
 
-          <q-card-actions align="around" class="q-pa-md" >
-            <q-btn color="primary" v-on:click="addCodeToUser" text-color="black" > GENERAR </q-btn>
+          <q-card-actions align="around" class="q-pa-md">
+            <q-btn color="primary" @click="confirm = true" text-color="black" > GENERAR </q-btn>
           </q-card-actions>
 
         </q-card>
 
       </div>
+
+      <q-dialog v-model="confirm" class="">
+
+        <q-card>
+          <q-card-section class="row items-center">
+            <span class=""> Esta seguro de que quiere seleccionar esta oferta? </span>
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn label="Cancelar" color="negative" v-close-popup />
+            <q-btn label="Confirmar" color="primary" v-close-popup v-on:click="addCodeToUser" />
+          </q-card-actions>
+        </q-card>
+
+      </q-dialog>
 
     </div>
   </q-page>
@@ -30,12 +45,33 @@ export default {
   data () {
     return {
       promotionalCodesList: [],
+      confirm: false,
     }
   },
 
   methods: {
     addCodeToUser() {
-      console.log('Adding code to user!')
+      // TODO:
+      this.$axios.post('/user', {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+      })
+      .then( (response) =>  {
+          this.$q.notify ({
+          color: 'green',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'El código ha sido añadido correctamente!'
+        })
+      })
+      .catch((error) => {
+        this.$q.notify ({
+          color: 'red',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Ha habido un error añadiendo el código. Por favor, vuelva a intentarlo más tarde.'
+        })
+      });
     },
     getAllPromotionalCodes() {
       // Hacemos el GET al backend para que devuelva una lista de objetos PromotionalCode

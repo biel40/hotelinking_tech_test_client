@@ -25,7 +25,7 @@
         <q-avatar>
           <img src="https://cdn1.iconfinder.com/data/icons/materia-arrows-symbols-vol-8/24/018_320_door_exit_logout-512.png">
         </q-avatar>
-          {{ this.user.logout }} 
+          <span> Desloguearse </span>
         </q-chip>
       </div>
          
@@ -48,7 +48,7 @@
           </q-item-section>
 
           <q-item-section>
-            <q-item-label v-on:click="displayMainPromotionalCode"> Adquirir un Código Promocional </q-item-label>
+            <q-item-label v-on:click="displayMainPromotionalCode"> Todas las ofertas </q-item-label>
           </q-item-section>
 
         </q-item>
@@ -60,7 +60,7 @@
           </q-item-section>
 
           <q-item-section>
-            <q-item-label v-on:click="displayPromotionalCodeList"> Lista de Códigos Promocionales </q-item-label>
+            <q-item-label v-on:click="displayPromotionalCodeList"> Tus Códigos Promocionales </q-item-label>
           </q-item-section>
 
         </q-item>
@@ -86,7 +86,7 @@ export default {
     return {
       leftDrawerOpen: false,
       user: {
-        logout:  "Desloguearse"
+        
       },
       menuIsDisplayed: false
     }
