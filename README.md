@@ -21,12 +21,13 @@ npm install
 quasar dev
 ```
 
+### Ya tenemos el proyecto ejecutándose en Desarrollo!
 
-### Hacemos la versión del proyecto para producción.
+### En el caso de querer la versión del proyecto para producción:
 ```bash
 quasar build
 ```
 
-### Personalizamos la configuración del proyecto:
+### Personalizción de la configuración del proyecto:
 See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
 
