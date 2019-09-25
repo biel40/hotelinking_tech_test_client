@@ -83,9 +83,6 @@ export default {
   data () {
     return {
       leftDrawerOpen: false,
-      user: {
-        
-      },
       menuIsDisplayed: false
     }
   },

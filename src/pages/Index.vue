@@ -52,7 +52,7 @@ export default {
   methods: {
     addCodeToUser() {
       // TODO: Método para vincular el usuario a la oferta. Siempre puedes mirar Keep It Safe
-      this.$axios.post('/user', {
+      this.$axios.post('/', {
         user_id:  'Lo obtenemos de algún lado, supongo que del local storage',
         promotional_code_id: 'Lo obtenemos de los datos que pillamos de la lista de códigos promocionales'
       })
