@@ -51,10 +51,10 @@ export default {
 
   methods: {
     addCodeToUser() {
-      // TODO:
+      // TODO: Método para vincular el usuario a la oferta. Siempre puedes mirar Keep It Safe
       this.$axios.post('/user', {
-        firstName: 'Fred',
-        lastName: 'Flintstone'
+        user_id:  'Lo obtenemos de algún lado, supongo que del local storage',
+        promotional_code_id: 'Lo obtenemos de los datos que pillamos de la lista de códigos promocionales'
       })
       .then( (response) =>  {
           this.$q.notify ({
@@ -75,15 +75,13 @@ export default {
     },
     getAllPromotionalCodes() {
       // Hacemos el GET al backend para que devuelva una lista de objetos PromotionalCode
-      // TODO: Hace falta implementar este Endpoint!
+      // TODO: alta implementar este Endpoint!
       this.$axios.get('homestead.test/api/getAllPromotionalCodes')
       .then(function (response) {
         // Si aqui devuelvo un JSON con objetos PromotionalCode, lo que tendré que hacer es ir uno por uno contruyendo objetos PromotionalCode y 
         // añadiendolos 
         this.promotionalCodesList = response;
-
         console.log(response);
-        console.log(this.getAllPromotionalCodes);
       })
       .catch(function (error) {
         console.log(error);

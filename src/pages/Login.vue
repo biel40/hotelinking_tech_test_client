@@ -64,7 +64,6 @@ export default {
         password: this.password
       })
       .then((response) => {
-        // Si el login ha ido bien, entras en la página principal
         this.$router.push('/app/index');
       })
       .catch((error) => {

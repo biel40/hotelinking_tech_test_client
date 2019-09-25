@@ -21,10 +21,10 @@
       </q-toolbar>
 
       <div class="q-mt-xs q-pa-xs" v-on:click="logoutFunction">
-        <q-chip square id="userDiv" class="q-pa-md" >
+        <q-chip square id="userDiv" class="q-pa-md" v-on:click="logoutFunction" >
         <q-avatar>
           <img src="https://cdn1.iconfinder.com/data/icons/materia-arrows-symbols-vol-8/24/018_320_door_exit_logout-512.png">
-        </q-avatar v-on:click="">
+        </q-avatar >
           <span> Desloguearse </span>
         </q-chip>
       </div>
@@ -48,7 +48,7 @@
           </q-item-section>
 
           <q-item-section>
-            <q-item-label v-on:click="displayMainPromotionalCode"> Todas las ofertas </q-item-label>
+            <q-item-label v-on:click="displayMainPromotionalCode"> Todas las Ofertas </q-item-label>
           </q-item-section>
 
         </q-item>
@@ -98,9 +98,9 @@ export default {
       this.$router.push('/app/index').catch(err => { console.log('Ya se encuentra en esta página') });
     },
     logoutFunction: function() {
+      // FIXME: Esta función no funciona desde el backend por algun problema con el Token, hay que hacer que caduque.
       this.$axios.post('http://homestead.test/api/logout')
       .then((response) => {
-        // Si nos deslogueamos, volvemos al menu del login
         this.$router.push('/');
       })
       .catch((error) => {
