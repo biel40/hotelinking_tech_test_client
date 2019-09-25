@@ -1,25 +1,33 @@
-# Quasar App (hotelinking_tech_client)
+# User History App (Parte de Cliente)
 
-A Quasar Framework app
+## Navegamos hasta la carpeta donde queremos almacenar el proyecto.
+```bash
+cd myProject
+```
 
-## Install the dependencies
+## Clonamos este repositorio de GitHub una vez dentro:
+```bash
+git clone https://github.com/biel40/hotelinking_tech_test_client.git
+```
+
+
+## Instalamos las dependencias
 ```bash
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Iniciamos el proyecto Quasar en modo de Desarrollo (hot-code reloading, error reporting, etc.)
 ```bash
 quasar dev
 ```
 
+### Ya tenemos el proyecto ejecutándose en Desarrollo!
 
-### Build the app for production
+### En el caso de querer la versión del proyecto para producción:
 ```bash
 quasar build
 ```
 
-### Customize the configuration
+### Personalizción de la configuración del proyecto:
 See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
-# hotelinking_tech_test_client
 
-Prueba técnica para Hotelinking. Parte de cliente.
