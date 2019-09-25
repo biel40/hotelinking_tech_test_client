@@ -5,6 +5,12 @@
 cd myProject
 ```
 
+## Clonamos este repositorio de GitHub una vez dentro:
+```bash
+git clone https://github.com/biel40/hotelinking_tech_test_client
+```
+
+
 ## Instalamos las dependencias
 ```bash
 npm install
