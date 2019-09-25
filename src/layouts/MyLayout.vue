@@ -25,7 +25,7 @@
         <q-avatar>
           <img src="https://cdn1.iconfinder.com/data/icons/materia-arrows-symbols-vol-8/24/018_320_door_exit_logout-512.png">
         </q-avatar >
-          <span> Desloguearse </span>
+          <span> Logout </span>
         </q-chip>
       </div>
          

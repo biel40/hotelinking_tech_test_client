@@ -1,32 +1,35 @@
 <template>
   <q-page class="flex flex-center">
 
-    <div>
+    <div class="column items-center">
 
-      <h5> Página de lista de códigos del usuario </h5>
+      <h5 style=""> Tus Códigos Promocionales </h5>
 
-       <!-- Voy a tener que pintar las cards recorriendo un v-for de lo que obtenga de BB.DD -->
       <div class="q-pa-md row items-start q-gutter-xl" >
 
-        <q-card class="my-card">
+        <q-card class="my-card" v-for="promotional_code_user in this.userPromotionalCodes" v-bind:key="promotional_code_user.id">
 
-          <q-card-section class="bg-primary text-black" style="height: 100px;">
-            <div class="text-h6"> <span style="color: black;"> Código Promocional #12345 </span> </div>
-          </q-card-section>
+          <div v-if="promotional_code_user.active == false">
 
-          <q-card-actions align="around" class="q-pa-md" >
-            <q-btn @click="confirm = true" color="primary" text-color="black" > CANJEAR CÓDIGO </q-btn>
-          </q-card-actions>
+            <q-card-section class="bg-secondary text-black" style="height: 100px;">
+              <div class="text-h6"> <span style="color: black;"> {{ promotional_code_user.promotional_code.code_title }} </span> </div>
+              <div class="text-subtitle2"> <span style="color: black;">  Código Único: {{ promotional_code_user.code }} </span> </div>
+            </q-card-section>
 
+            <q-card-actions align="around" class="q-pa-md" >
+              <q-btn @click="showModal(promotional_code_user.id)" color="secondary" text-color="black" > CANJEAR CÓDIGO </q-btn>
+            </q-card-actions>
+
+          </div>
         </q-card>
 
       </div> 
 
-       <q-dialog v-model="confirm" class="">
+       <q-dialog v-model="confirm" >
 
         <q-card>
           <q-card-section class="row items-center">
-            <span class=""> Esta seguro de que quiere canjear DEFINITIVAMENTE esta oferta? </span>
+            <span> Esta seguro de que quiere canjear DEFINITIVAMENTE esta oferta? </span>
           </q-card-section>
 
           <q-card-actions align="right">
@@ -49,23 +52,30 @@ export default {
     return {
       userPromotionalCodes: [],
       confirm: false,
+      currentPromotionalCodeUserId: 0
     }
   },
-
+  mounted() {
+    this.getAllPromotionalCodesFromUser( localStorage.getItem('user_id') );
+  },
   methods: {
     submitCode() {
-      console.log('Submiting code...');
-      // TODO:
-      this.$axios.post('/user', {
-        firstName: 'Fred',
-        lastName: 'Flintstone'
+
+      this.$axios.post('http://homestead.test/api/activateCode', {
+        promotional_code_user_id: this.currentPromotionalCodeUserId
       })
-      .then( (response) =>  {
+      .then((response) =>  {
           this.$q.notify ({
           color: 'green',
           textColor: 'white',
           icon: 'warning',
-          message: 'El código ha sido canjeado correctamente!'
+          message: 'El código ha sido canjeado y activado correctamente!'
+        })
+        // Quitamos la carta de forma visual:
+        this.userPromotionalCodes.forEach((userPromotionalCode) => {
+            if (userPromotionalCode.id == this.currentPromotionalCodeUserId) {
+                userPromotionalCode.active = true;
+            }
         })
       })
       .catch((error) => {
@@ -78,17 +88,17 @@ export default {
       });
     },
     getAllPromotionalCodesFromUser(userId) {
-      // Hacemos el GET al backend para que devuelva una lista de objetos PromotionalCode
-      // TODO: Hace falta implementar este Endpoint.
-      this.$axios.get('homestead.test/api/getProm')
-      .then(function (response) {
-        this.userPromotionalCodes = response;
-        console.log(response);
+      this.$axios.get('http://homestead.test/api/getAllPromotionalCodesFromUser/' + userId)
+      .then((response) => {
+        this.userPromotionalCodes = response.data;
       })
       .catch(function (error) {
         console.log(error);
       })
-
+    },
+    showModal(currentPromotionalCodeUserId) {
+      this.confirm = true;
+      this.currentPromotionalCodeUserId = currentPromotionalCodeUserId;
     }
   }
 }

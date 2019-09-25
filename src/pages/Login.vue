@@ -64,6 +64,8 @@ export default {
         password: this.password
       })
       .then((response) => {
+        localStorage.clear();
+        localStorage.setItem('user_id', JSON.stringify(response.data.user.id))
         this.$router.push('/app/index');
       })
       .catch((error) => {
