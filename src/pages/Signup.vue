@@ -95,6 +95,7 @@ export default {
             icon: 'warning',
             message: 'Usuario introducido correctamente!'
           })
+          this.backToLogin();
         })
         .catch((error) => {
           this.$q.notify ({
