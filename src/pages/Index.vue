@@ -86,8 +86,29 @@ export default {
       })
     },
     displayModal(promotionalCodeId) {
-      this.confirm = true;
-      this.currentPromotional_codeId = promotionalCodeId;
+      this.checkUserHasPromotionalCode(promotionalCodeId, localStorage.getItem('user_id') );
+    },
+    checkUserHasPromotionalCode(promotionalCodeId, user_id) {
+      this.$axios.get('http://homestead.test/api/checkUserHasPromotionalCode/' + promotionalCodeId + '/' + user_id + '')
+      .then((response) => {
+
+        let booleanResponse = response.data;
+        if(booleanResponse) {
+          this.$q.notify ({
+            color: 'red-9',
+            textColor: 'white',
+            icon: 'warning',
+            message: 'Este usuario ya tiene este código, o lo ha canjeado previamente.'
+          })
+        } else {
+          this.confirm = true;
+          this.currentPromotional_codeId = promotionalCodeId;
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+
     }
   }
 }

@@ -5,7 +5,7 @@
 
       <h5 style=""> Tus Códigos Promocionales </h5>
 
-      <div class="q-pa-md row items-start q-gutter-xl" >
+      <div class="q-pa-md row items-center q-gutter-xl" >
 
         <q-card class="my-card" v-for="promotional_code_user in this.userPromotionalCodes" v-bind:key="promotional_code_user.id">
 

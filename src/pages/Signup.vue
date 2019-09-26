@@ -82,11 +82,6 @@ export default {
         message: 'Las contraseñas deben coincidir!'
         })
       } else {
-        console.log(this.name);
-        console.log(this.email);
-        console.log(this.password);
-        console.log(this.passwordConfirmation);
-
         this.$axios.post('http://homestead.test/api/register', {
           name: this.name,
           email: this.email,
