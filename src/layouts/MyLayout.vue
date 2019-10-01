@@ -41,7 +41,7 @@
 
         <q-item-label header > Menú Principal </q-item-label>
 
-          <q-item clickable tag="a" target="_blank">
+          <q-item clickable tag="a" >
 
           <q-item-section avatar>
             <q-icon name="add_circle" style="font-size: 2em;" />
@@ -53,7 +53,7 @@
 
         </q-item>
 
-        <q-item clickable tag="a" target="_blank">
+        <q-item clickable tag="a">
 
           <q-item-section avatar>
             <q-icon name="style" style="font-size: 2em;" />
@@ -61,6 +61,19 @@
 
           <q-item-section>
             <q-item-label v-on:click="displayPromotionalCodeList"> Tus Códigos Promocionales </q-item-label>
+          </q-item-section>
+
+        </q-item>
+
+          <!-- Item que solo se muestra si el rol del usuario es Administrador -->
+         <q-item v-if="localStorage.getItem('user_role') == 'ADMIN'" clickable tag="a">
+
+          <q-item-section avatar>
+            <q-icon name="style" style="font-size: 2em;" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label v-on:click="displayPromotionalCodeCreation"> Creación de Ofertas </q-item-label>
           </q-item-section>
 
         </q-item>
@@ -83,19 +96,19 @@ export default {
   data () {
     return {
       leftDrawerOpen: false,
-      menuIsDisplayed: false
+      menuIsDisplayed: false,
     }
   },
 
   methods: {
-    displayPromotionalCodeList: function(event) {
+    displayPromotionalCodeList(event) {
       this.$router.push('/app/productCodeList').catch(err => { console.log('Ya se encuentra en esta página') });
     },
-    displayMainPromotionalCode: function(event) {
+    displayMainPromotionalCode (event) {
       this.$router.push('/app/index').catch(err => { console.log('Ya se encuentra en esta página') });
     },
     logoutFunction: function() {
-      // FIXME: Esta función no funciona desde el backend por algun problema con el Token, hay que hacer que caduque.
+
       this.$axios.post('http://homestead.test/api/logout')
       .then((response) => {
         this.$router.push('/');
@@ -109,6 +122,9 @@ export default {
           })
       });  
       
+    },
+    displayPromotionalCodeCreation (event) {
+      this.$router.push('/app/productCodeCreation').catch(err => { console.log('Ya se encuentra en esta página') });
     }
   }
 }

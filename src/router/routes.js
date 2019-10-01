@@ -12,7 +12,8 @@ const routes = [
     component: () => import('layouts/MyLayout.vue'),
     children: [
       { path: '/app/index', component: () => import('pages/Index.vue') },
-      { path: '/app/productCodeList', component: () => import('pages/ProductCodesList.vue') }
+      { path: '/app/productCodeList', component: () => import('pages/ProductCodesList.vue') },
+      { path: '/app/productCodeCreation', component: () => import('pages/ProductCodeCreation.vue') }
     ]
   }
 ]

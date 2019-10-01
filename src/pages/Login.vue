@@ -65,7 +65,10 @@ export default {
       })
       .then((response) => {
         localStorage.clear();
-        localStorage.setItem('user_id', JSON.stringify(response.data.user.id))
+        localStorage.setItem('user_id', JSON.stringify(response.data.user.id));
+        // TODO: Añadimos Eol al Local Storage
+        localStorage.setItem('user_role', JSON.stringify(response.data.user.role));
+
         this.$router.push('/app/index');
       })
       .catch((error) => {
