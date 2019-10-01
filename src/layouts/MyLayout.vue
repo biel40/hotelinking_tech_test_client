@@ -65,18 +65,17 @@
 
         </q-item>
 
-          <!-- Item que solo se muestra si el rol del usuario es Administrador -->
-         <q-item v-if="localStorage.getItem('user_role') == 'ADMIN'" clickable tag="a">
+        <q-item v-if="this.user_role == 'ADMIN'" clickable tag="a">
 
-          <q-item-section avatar>
-            <q-icon name="style" style="font-size: 2em;" />
-          </q-item-section>
+        <q-item-section avatar>
+          <q-icon name="assignment_turned_in" style="font-size: 2em;" />
+        </q-item-section>
 
-          <q-item-section>
-            <q-item-label v-on:click="displayPromotionalCodeCreation"> Creación de Ofertas </q-item-label>
-          </q-item-section>
+        <q-item-section>
+          <q-item-label v-on:click="displayPromotionalCodeCreation"> Creación de Ofertas </q-item-label>
+        </q-item-section>
 
-        </q-item>
+      </q-item>
 
       </q-list>
       
@@ -97,7 +96,12 @@ export default {
     return {
       leftDrawerOpen: false,
       menuIsDisplayed: false,
+      user_role: ''
     }
+  },
+  created() {
+    let firstRemove = localStorage.getItem('user_role').replace('"', '');
+    this.user_role = firstRemove.replace('"', '');
   },
 
   methods: {

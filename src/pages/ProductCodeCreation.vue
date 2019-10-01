@@ -3,32 +3,29 @@
 
     <div class="column items-center">
 
-      <h5 style=""> Nueva Oferta </h5>
-
-        <!-- Cambiar el formulario & personalizarlo! -->
+      <h4 style="color:#ffb74d "> Nueva Oferta </h4>
 
       <q-form
         @submit="onSubmit"
         class="q-gutter-md column items-center"
         >
 
-      <q-input filled v-model="name" type="text" style="width: 500px" hint="Nombre de Oferta" >
+      <q-input  v-model="code_title" type="text" style="width: 400px" hint="Título de la Oferta" >
     
       </q-input>
 
-      <q-input filled v-model="description" type="text" style="width: 500px" hint="Descripción" >
+      <q-input  v-model="description" type="text" style="width: 400px" hint="Descripción" >
       
       </q-input>
 
-        <q-input filled v-model="price" type="text" style="width: 500px" hint="Precio" >
+      <q-input filled v-model="price" type="text" style="width: 100px" hint="Precio (€)" >
         
-        </q-input>
+      </q-input>
 
 
       <div>
         <q-btn label="CREAR" text-color="white" type="submit" color="primary" class="q-ml-md q-items-center q-pa-xs" style="width: 200px" />
       </div>
-
       
     </q-form>
 
@@ -41,9 +38,9 @@
 export default {
   data () {
     return {
-        name: '',
-        description: '',
-        price: 0
+      code_title: '',
+      description: '',
+      price: 0.0
     }
   },
 
@@ -55,8 +52,8 @@ export default {
             console.log('Creando....');
 
             // TODO: Implementar Endpoint para la creación de ofertas.
-            this.$axios.post('http://homestead.test/api/createNewPromotionalCode', {
-                name: this.name,
+            this.$axios.post('http://homestead.test/api/newPromotionalCode', {
+                code_title: this.code_title,
                 description: this.description,
                 price: this.price,
             })
